@@ -7,27 +7,52 @@ public class UserModel {
     /**
      * Имя пользователя
      */
-    String userName;
+    private String userName;
     /**
      * Логин пользователя для входа
      */
-    String userLogin;
+    private String userLogin;
     /**
      * Пароль пользователя
      */
-    String userPassword;
+    private String userPassword;
     /**
      * Токен герерируемый сервером
      * При регистрации пользователя он приходит пустым
      * В других случаях пустым быть не может
      */
-    String token;
+    private String token;
 
-    public UserModel(String userName, String userLogin, String userPassword, String token) {
-        this.userName = userName;
-        this.userLogin = userLogin;
-        this.userPassword = userPassword;
+
+    public String getToken() {
+        return token;
+    }
+
+    public String getUserLogin() {
+        return userLogin;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public String getUserPassword() {
+        return userPassword;
+    }
+
+    public void setToken(String token) {
         this.token = token;
     }
 
+    public void setUserLogin(String userLogin) {
+        this.userLogin = userLogin;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
+    }
 }
