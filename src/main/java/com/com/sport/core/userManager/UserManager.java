@@ -14,7 +14,7 @@ public class UserManager {
      * @return новый пользователь с токеном
      */
     UserModel createNewUser(UserModel userInfo) {
-        UserModel model = new UserModel("", "", "", "");
+        UserModel model = new UserModel();
         return model;
     }
 
