@@ -1,4 +1,4 @@
-package com.sport.core.models;
+package com.com.sport.spnig.server.trainAPI.models;
 
 /**
  * Модель данных, которая будет отправлена на сторону клиента

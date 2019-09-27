@@ -1,7 +1,7 @@
 package com.com.sport.spnig.server.Mock;
 
 
-import com.sport.core.models.UserModel;
+import com.com.sport.spnig.server.trainAPI.models.UserModel;
 import org.springframework.stereotype.Service;
 
 /**

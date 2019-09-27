@@ -1,4 +1,4 @@
-package com.sport.core.models;
+package com.com.sport.spnig.server.trainAPI.models;
 
 /**
  * Модель описывающая данные пользователя
@@ -23,6 +23,7 @@ public class UserModel {
      */
     private String token;
 
+    private String error;
 
     public String getToken() {
         return token;
@@ -54,5 +55,24 @@ public class UserModel {
 
     public void setUserPassword(String userPassword) {
         this.userPassword = userPassword;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public void getLog() {
+        String log = String.format("ЛОГ МОДЕЛИ \n" +
+                "Имя пользователя --> %s\n" +
+                "Пароль пользователя --> %s\n" +
+                "Токен пользователя --> %s\n" +
+                "Ошибка ---> %s\n" +
+                "КОНЕЦ ЛОГА", userLogin, userPassword, token, error);
+
+        System.out.println(log);
     }
 }

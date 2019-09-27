@@ -1,7 +1,7 @@
 package com.com.sport.core.userManager;
 
 
-import com.sport.core.models.UserModel;
+import com.com.sport.spnig.server.trainAPI.models.UserModel;
 
 /**
  * Создает новых пользователей и удаляет старых пользователей
