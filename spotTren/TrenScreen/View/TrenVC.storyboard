@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="duI-9m-ZmX">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--TrenVC-->
+        <scene sceneID="paa-iz-zQ0">
+            <objects>
+                <viewController id="duI-9m-ZmX" customClass="TrenVC" customModule="spotTren" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="f2B-cX-Ir2">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pGu-cy-BlS">
+                                <rect key="frame" x="0.0" y="44" width="414" height="754"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="k20-LI-vxs">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="k20-LI-vxs" id="QCa-GR-h1h">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y9z-RM-CHu">
+                                <rect key="frame" x="62" y="814" width="290" height="32"/>
+                                <state key="normal" title="Получить статистику"/>
+                                <connections>
+                                    <action selector="getStatus:" destination="duI-9m-ZmX" eventType="touchUpInside" id="Aoy-VA-qWO"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="SX6-uq-v71" firstAttribute="trailing" secondItem="pGu-cy-BlS" secondAttribute="trailing" id="Bed-5F-HMM"/>
+                            <constraint firstItem="y9z-RM-CHu" firstAttribute="centerX" secondItem="SX6-uq-v71" secondAttribute="centerX" id="V2S-as-iGZ"/>
+                            <constraint firstItem="pGu-cy-BlS" firstAttribute="top" secondItem="SX6-uq-v71" secondAttribute="top" id="b5u-wM-jhp"/>
+                            <constraint firstItem="y9z-RM-CHu" firstAttribute="width" secondItem="pGu-cy-BlS" secondAttribute="width" multiplier="0.7" id="fGR-3e-yfo"/>
+                            <constraint firstItem="SX6-uq-v71" firstAttribute="bottom" secondItem="pGu-cy-BlS" secondAttribute="bottom" constant="64" id="g3p-PQ-j0I"/>
+                            <constraint firstItem="SX6-uq-v71" firstAttribute="bottom" secondItem="y9z-RM-CHu" secondAttribute="bottom" constant="16" id="n0f-fy-y6n"/>
+                            <constraint firstItem="y9z-RM-CHu" firstAttribute="top" secondItem="pGu-cy-BlS" secondAttribute="bottom" constant="16" id="pAY-z5-SbV"/>
+                            <constraint firstItem="pGu-cy-BlS" firstAttribute="leading" secondItem="SX6-uq-v71" secondAttribute="leading" id="sit-qM-iHS"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="SX6-uq-v71"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Ce6-dQ-fC8">
+                        <barButtonItem key="leftBarButtonItem" title="logout" style="plain" id="iXh-pa-hgi">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9Q0-Y0-MYG">
+                                <rect key="frame" x="20" y="7" width="92" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="logout"/>
+                                <connections>
+                                    <action selector="logout:" destination="duI-9m-ZmX" eventType="touchUpInside" id="LID-gg-j2H"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="pGu-cy-BlS" id="Q2B-yA-SBB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZWh-z4-hQc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1157.9710144927537" y="-254.46428571428569"/>
+        </scene>
+    </scenes>
+</document>
