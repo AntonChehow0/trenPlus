@@ -51,4 +51,15 @@ class TrenWatchVC: UIViewController {
         }
         self.navigationController?.pushViewController(changeTrenVC, animated: true)
     }
+    
+    /// Удалить тренировку
+    @IBAction func deleteTren(_ sender: Any) {
+        let deleter = TrenDeleter()
+        guard let model = self.currentModel else { return }
+        deleter.geleteTren(tren: model) { [weak self] in
+            self?.updateHandler?()
+            self?.navigationController?.popViewController(animated: true)
+        }
+    }
 }
+

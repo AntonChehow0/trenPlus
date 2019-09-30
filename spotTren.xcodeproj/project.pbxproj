@@ -29,6 +29,7 @@
 		71747B7FE3A429B47B85037B /* Pods_spotTren.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D67876C5D80E4EC13D8B14EB /* Pods_spotTren.framework */; };
 		940AB1A8233B33250094ABDD /* GetStatisticRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940AB1A7233B33250094ABDD /* GetStatisticRequestModel.swift */; };
 		940AB1AA233B343D0094ABDD /* StatisticModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940AB1A9233B343D0094ABDD /* StatisticModel.swift */; };
+		944FE59423425AB100BA777C /* TrenDeleter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944FE59323425AB100BA777C /* TrenDeleter.swift */; };
 		94671E962339FD2E0022B686 /* SideMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94671E952339FD2E0022B686 /* SideMenu.storyboard */; };
 		94EFBE51233A655400700D59 /* StatusVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EFBE50233A655400700D59 /* StatusVC.swift */; };
 		94EFBE53233A657200700D59 /* StatusVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94EFBE52233A657200700D59 /* StatusVC.storyboard */; };
@@ -61,6 +62,7 @@
 		3EFDF95E232A893100261449 /* TrenVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TrenVC.storyboard; sourceTree = "<group>"; };
 		940AB1A7233B33250094ABDD /* GetStatisticRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStatisticRequestModel.swift; sourceTree = "<group>"; };
 		940AB1A9233B343D0094ABDD /* StatisticModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticModel.swift; sourceTree = "<group>"; };
+		944FE59323425AB100BA777C /* TrenDeleter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrenDeleter.swift; sourceTree = "<group>"; };
 		94671E952339FD2E0022B686 /* SideMenu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SideMenu.storyboard; sourceTree = "<group>"; };
 		94EFBE50233A655400700D59 /* StatusVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusVC.swift; sourceTree = "<group>"; };
 		94EFBE52233A657200700D59 /* StatusVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StatusVC.storyboard; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 		3EA433A523362E8200233015 /* TrenWatch */ = {
 			isa = PBXGroup;
 			children = (
+				944FE59223425AA100BA777C /* Api */,
 				3EA433A623362E9500233015 /* TrenWatchVC.swift */,
 				3EA433A823362EEF00233015 /* TrenWatchVC.storyboard */,
 			);
@@ -249,6 +252,14 @@
 				940AB1A9233B343D0094ABDD /* StatisticModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		944FE59223425AA100BA777C /* Api */ = {
+			isa = PBXGroup;
+			children = (
+				944FE59323425AB100BA777C /* TrenDeleter.swift */,
+			);
+			path = Api;
 			sourceTree = "<group>";
 		};
 		94671E942339FD040022B686 /* SideMenu */ = {
@@ -414,6 +425,7 @@
 				94EFBE56233A672A00700D59 /* ApiController.swift in Sources */,
 				3EFDF95D232A891500261449 /* TrenVC.swift in Sources */,
 				94EFBE51233A655400700D59 /* StatusVC.swift in Sources */,
+				944FE59423425AB100BA777C /* TrenDeleter.swift in Sources */,
 				94EFBE58233A676F00700D59 /* DateCreater.swift in Sources */,
 				3EFDF956232A827A00261449 /* TokenSaver.swift in Sources */,
 				3EB2BA5D2327A3850058E07F /* RegistrationVC.swift in Sources */,

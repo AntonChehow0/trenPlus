@@ -80,6 +80,14 @@
                                     <action selector="chenge:" destination="2y1-RH-t75" eventType="touchUpInside" id="gg3-x7-LMO"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o1d-Gn-fhh">
+                                <rect key="frame" x="138" y="639" width="134" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Удалить"/>
+                                <connections>
+                                    <action selector="deleteTren:" destination="2y1-RH-t75" eventType="touchUpInside" id="Akk-o8-QhX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="mrk-Qs-n7U"/>
@@ -93,7 +101,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="teS-QQ-WEN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-20.289855072463769" y="-21.428571428571427"/>
+            <point key="canvasLocation" x="-275.36231884057975" y="-29.464285714285712"/>
         </scene>
     </scenes>
 </document>
