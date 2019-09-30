@@ -169,7 +169,7 @@ public class BDDriver {
             e.printStackTrace();
         }
         disconnect();
-        return null;
+        return new ArrayList();
     }
 
     /**
@@ -195,7 +195,6 @@ public class BDDriver {
      * @return
      */
     public Integer getTime(ModelForGetStatus model) {
-        connect();
         try {
 
             String date = "(dateTren = ";
@@ -208,16 +207,17 @@ public class BDDriver {
                 }
             }
 
-
+            connect();
             String sql = String.format("SELECT sum (allTime) as sum FROM " +
                     DATA_BASE_TABLE_NAME +
                     " WHERE (token = '%s' AND %s) GROUP BY token", model.getToken(), date);
             System.out.println(sql);
             resultSet = statment.executeQuery(sql);
-            disconnect();
-            while (resultSet.next()) {
-                Integer sum = resultSet.getInt("sum");
-                return sum;
+            if (resultSet.next()) {
+                int result = resultSet.getInt("sum");
+                disconnect();
+                System.out.println("Статистика ---> " + result);
+                return result;
             }
         } catch (Exception e) {
             e.printStackTrace();
