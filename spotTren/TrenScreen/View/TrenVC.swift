@@ -22,19 +22,34 @@ class TrenVC: UIViewController {
         
     }
     
+    let refrashControll = UIRefreshControl()
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.updateData()
+        
+        self.refrashControll.attributedTitle = NSAttributedString(string: "Идёт обновление...")
+        self.refrashControll.addTarget(self, action: #selector(refrashData), for: UIControl.Event.valueChanged)
+        self.tableView?.addSubview(self.refrashControll)
+        
         tableView?.delegate = self
         tableView?.dataSource = self
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    @objc func refrashData() {
+        updateData()
+        self.refrashControll.endRefreshing()
+    }
+    
+    
+    /// Обновляет данные на View
+    private func updateData() {
         let loader = AllTrenController()
-        loader.load { [weak self] (models) in
+        loader.load { (models) in
+            self.models = models
             DispatchQueue.main.async {
-                self?.models = models
-                self?.tableView?.reloadData()
+                self.tableView?.reloadData()
             }
         }
     }
@@ -46,14 +61,15 @@ class TrenVC: UIViewController {
     
     /// Получить статистику
     @IBAction func getStatus(_ sender: Any) {
-        
         guard let statusScreen = UIStoryboard(name: "StatusVC", bundle: nil).instantiateInitialViewController() as? StatusVC else { return }
         self.navigationController?.pushViewController(statusScreen, animated: true)
-        
     }
     
     @objc func addTren() {
         guard let create = UIStoryboard(name: "CreateTrenVC", bundle: nil).instantiateInitialViewController() as? CreateTrenVC else { return }
+        create.complitionHandler = {
+            self.updateData()
+        }
         self.navigationController?.pushViewController(create, animated: true)
     }
     
@@ -78,13 +94,7 @@ extension TrenVC: UITableViewDelegate, UITableViewDataSource {
         detailInformation.currentModel = currentModel
         
         detailInformation.updateHandler = { [weak self] in
-            let loader = AllTrenController()
-            loader.load { (model) in
-                self?.models = model
-                DispatchQueue.main.async {
-                    self?.tableView?.reloadData()
-                }
-            }
+            self?.updateData()
         }
         
         self.navigationController?.pushViewController(detailInformation, animated: true)

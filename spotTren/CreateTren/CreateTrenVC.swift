@@ -33,15 +33,6 @@ class CreateTrenVC: UIViewController {
         
     }
     
-    func createModel() -> TrenModel? {
-        guard let name = trainName?.text,
-            let type = treinType?.text,
-            let time = Int(trenTime?.text ?? ""),
-            let date = trenDate?.text else { return nil }
-        let model = TrenModel(name: name, type: type, token: TokenSaver().get(), time: time, date: date)
-        return model
-    }
-    
     func createNew() {
         guard let name = trainName?.text,
             let type = treinType?.text,
@@ -84,19 +75,12 @@ class CreateTrenVC: UIViewController {
         self.trenDate?.text = model.date
     }
     
+
+    
     @IBAction func createTren(_ sender: Any) {
-      
-        if (isCreate) {
-            createNew()
-            self.complitionHandler?()
-            self.navigationController?.popViewController(animated: true)
-        } else {
-            self.delete()
-            self.createNew()
-            self.navigationController?.popViewController(animated: true)
-            complitionHandler?()
-        }
-        
+        self.createNew()
+        complitionHandler?()
+        self.navigationController?.popViewController(animated: true)
     }
     
     
