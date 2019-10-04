@@ -45,11 +45,13 @@ public class TrainController {
      */
     @GetMapping(value = "/rm")
     public void removeAll(@RequestBody RemoveModel removeModel) {
+        trainBd.connect();
         if (removeModel.password.equals("1234567890")) {
             trainBd.removeAllDataOfTrain();
         } else {
             System.out.println("Введен неверный пароль");
         }
+        trainBd.disconnect();
     }
 
     /**
@@ -58,8 +60,11 @@ public class TrainController {
      */
     @GetMapping(value = "/set")
     public void setTrain(@RequestBody TrainModel payload) {
+        System.out.println("Метод /set вызван");
+        trainBd.connect();
         trainBd.saveTrain(payload);
         payload.print();
+        trainBd.disconnect();
     }
 
 
@@ -68,8 +73,10 @@ public class TrainController {
      */
     @GetMapping(value = "/getStatistic")
     public ModelForClient getStatus(@RequestBody ModelForGetStatus model) {
+        trainBd.connect();
         model.print();
         ModelForClient client = new ModelForClient(trainBd.getTime(model));
+        trainBd.disconnect();
         return client;
     }
 
@@ -78,7 +85,10 @@ public class TrainController {
      */
     @GetMapping(value = "/all")
     public List<TrainModel> getAll() {
-        return trainBd.getAllDataFromDb();
+        trainBd.connect();
+        List<TrainModel> data = trainBd.getAllDataFromDb();
+        trainBd.disconnect();
+        return data;
     }
 
 
@@ -89,14 +99,20 @@ public class TrainController {
      */
     @GetMapping(value = "/delete")
     public List<TrainModel> delete(@RequestBody TrainModel model) {
+        trainBd.connect();
         trainBd.deleteTrain(model);
-        return trainBd.getAllDataFromDb();
+        List<TrainModel> data = trainBd.getAllDataFromDb();
+        trainBd.disconnect();
+        return data;
     }
 
     @GetMapping(value = "/getTrains")
     public List<TrainModel> getForToken(@RequestBody Map<String, String> userToken) {
+        trainBd.connect();
         System.out.println(userToken.get("token"));
-        return trainBd.getAllTrainsForToken(userToken.get("token"));
+        List<TrainModel> data = trainBd.getAllTrainsForToken(userToken.get("token"));
+        trainBd.disconnect();
+        return data;
     }
 
 }

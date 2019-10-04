@@ -2,6 +2,7 @@ package com.sportTrains.dataBase;
 
 import com.sportTrains.model.ModelForGetStatus;
 import com.sportTrains.model.TrainModel;
+import org.apache.juli.logging.Log;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -44,20 +45,38 @@ public class BDDriver {
      */
     public static void main(String arg[]) {
         BDDriver testDriver = new BDDriver();
+        testDriver.connect();
+
         ModelForGetStatus modelForGetStatus = new ModelForGetStatus();
         modelForGetStatus.setToken("token1");
 
-        List<String> list = new ArrayList();
-        list.add("10.10.10");
-        list.add("11.10.10");
-        list.add("12.10.10");
+//        List<String> list = new ArrayList();
+//        list.add("10.10.10");
+//        list.add("11.10.10");
+//        list.add("12.10.10");
+//
+//
+//        for (TrainModel model : testDriver.getAllDataFromDb()) {
+//            System.out.println(model.time);
+//            System.out.println(model.name);
+//            System.out.println(model.token);
+//            System.out.println(model.date);
+//        }
 
-        for (TrainModel model : testDriver.getAllDataFromDb()) {
-            System.out.println(model.time);
-            System.out.println(model.name);
-            System.out.println(model.token);
-            System.out.println(model.date);
+        TrainModel model = new TrainModel();
+        model.setDate("afgsd");
+        model.setName("asdf");
+        model.setTime(5645);
+        model.setToken("ksadnkhsafd");
+        model.setType("andskjabnds");
+
+//        testDriver.saveTrain(model);
+        List<TrainModel> models = testDriver.getAllTrainsForToken("cwlzk3l2p67aeq5mhbmo1n8t1l6o3tgyzry6p0qmwr9eszns0y8kupy0gah47lbsfgewvzbcccvjaceh05zl8c6esro53w70cabv");
+        for (TrainModel emodel : models) {
+            emodel.print();
         }
+
+        testDriver.disconnect();
 
     }
 
@@ -65,16 +84,15 @@ public class BDDriver {
     /**
      * Подключиться к БД
      */
-    private void connect() {
-        connection = null;
+    public void connect() {
         try {
             Class.forName("org.sqlite.JDBC");
             connection = DriverManager.getConnection("jdbc:sqlite:" + DATA_BASE_NAME);
             System.out.println("База подключена");
             statment = connection.createStatement();
-            statment.execute("CREATE TABLE IF NOT EXISTS " +
-                    DATA_BASE_TABLE_NAME +
-                    " ( \"name\"\tTEXT,\t\"type\"\tTEXT,\t\"allTime\"\tTEXT,\t\"token\"\tTEXT,\t\"dateTren\"\tTEXT);");
+//            statment.execute("CREATE TABLE IF NOT EXISTS " +
+//                    DATA_BASE_TABLE_NAME +
+//                    " ( \"name\"\tTEXT,\t\"type\"\tTEXT,\t\"allTime\"\tTEXT,\t\"token\"\tTEXT,\t\"dateTren\"\tTEXT);");
         } catch (Exception e) {
             System.out.println("Попытка подключени завершена с ошибкой");
             e.printStackTrace();
@@ -84,16 +102,19 @@ public class BDDriver {
     /**
      * Отключится от БД
      */
-    private void disconnect() {
+    public void disconnect() {
         try {
             if (connection != null) {
                 connection.close();
+                System.out.println("connection.close");
             }
             if (statment != null) {
                 statment.close();
+                System.out.println("connection.close");
             }
             if (resultSet != null) {
                 resultSet.close();
+                System.out.println("resultSet.close");
             }
             System.out.println("Соединение с БД закрыто");
         } catch (Exception e) {
@@ -105,7 +126,7 @@ public class BDDriver {
      * Удаляет всех пользователей из базы данный
      */
     public void removeAllDataOfTrain() {
-        connect();
+        System.out.println("Удаление пользователей в процессе");
         try {
             String sql = "DELETE FROM " + DATA_BASE_TABLE_NAME;
             statment.execute(sql);
@@ -113,7 +134,6 @@ public class BDDriver {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        disconnect();
     }
 
 
@@ -123,7 +143,7 @@ public class BDDriver {
      * @param modelForSave
      */
     public void saveTrain(TrainModel modelForSave) {
-        connect();
+        System.out.println("Сохранение тренировки в процессе...");
         try {
             String sql = String.format("INSERT INTO " +
                             DATA_BASE_TABLE_NAME +
@@ -134,14 +154,21 @@ public class BDDriver {
                     modelForSave.date);
             System.out.println(sql);
             statment.execute(sql);
+            System.out.println("Сохраниене тренировки завершено");
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println("Сохраниене тренировки завершено неудачей");
+            System.out.println("Повторная попытка");
+            connect();
+            saveTrain(modelForSave);
+            disconnect();
         }
-        disconnect();
     }
 
+    /**
+     * Все данные из БД (метод для теста)
+     */
     public List<TrainModel> getAllDataFromDb() {
-        connect();
         try {
             List<TrainModel> modelList = new ArrayList();
             resultSet = statment.executeQuery("SELECT * FROM " + DATA_BASE_TABLE_NAME);
@@ -163,12 +190,10 @@ public class BDDriver {
 
                 modelList.add(model);
             }
-            disconnect();
             return modelList;
         } catch (Exception e) {
             e.printStackTrace();
         }
-        disconnect();
         return new ArrayList();
     }
 
@@ -177,16 +202,21 @@ public class BDDriver {
      * @param model тренировка на удаление
      */
     public void deleteTrain(TrainModel model) {
-        connect();
+        System.out.println("Удаление тренировки в процессе...");
         try {
             String sql = String.format("DELETE FROM " +
                     DATA_BASE_TABLE_NAME +
                     " WHERE token = \"%s\" AND name = \"%s\"AND allTime = \"%s\";\n)", model.token, model.name, model.time);
             statment.execute(sql);
+            System.out.println("Удаление завершено");
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println("Удаление завершено неудачей");
+            System.out.println("Повторная попытка");
+            connect();
+            deleteTrain(model);
+            disconnect();
         }
-        disconnect();
     }
 
     /**
@@ -195,6 +225,7 @@ public class BDDriver {
      * @return
      */
     public Integer getTime(ModelForGetStatus model) {
+        System.out.println("Получение статистики в процессе...");
         try {
 
             String date = "(dateTren = ";
@@ -207,31 +238,44 @@ public class BDDriver {
                 }
             }
 
-            connect();
             String sql = String.format("SELECT sum (allTime) as sum FROM " +
                     DATA_BASE_TABLE_NAME +
                     " WHERE (token = '%s' AND %s) GROUP BY token", model.getToken(), date);
             System.out.println(sql);
             resultSet = statment.executeQuery(sql);
+            String log = String.format("Количество данных в ответе на запрос ----> %s", resultSet.getFetchSize());
+            System.out.println(log);]
             if (resultSet.next()) {
                 int result = resultSet.getInt("sum");
-                disconnect();
                 System.out.println("Статистика ---> " + result);
                 return result;
+            } else {
+                System.out.println("Получние статистики завершено\nСтатистика отсутствует");
+                return 0;
             }
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println("Получние статистики завершено неудачно");
+            System.out.println("Повторная попытка");
+            connect();
+            Integer time = getTime(model);
+            disconnect();
+            return time;
         }
-        disconnect();
-        return 0;
     }
 
+    /**
+     * Получить все тренировки пользователя
+     * @param token идентификатор пользователя
+     * @return тренировки пользователя
+     */
     public List<TrainModel> getAllTrainsForToken(String token) {
-        connect();
-
+        System.out.println("Получение пользователем всех тренировок по своему токену");
         try {
-            String sql = String.format("SELECT * FROM %s WHERE (token = '%s')", DATA_BASE_TABLE_NAME, token);
+            String sql = String.format("SELECT * FROM %s WHERE (token = \"%s\")", DATA_BASE_TABLE_NAME, token);
             System.out.println(sql);
+
+
             resultSet = statment.executeQuery(sql);
 
             List<TrainModel> modelList = new ArrayList();
@@ -251,15 +295,21 @@ public class BDDriver {
                 model.setToken(token);
                 model.setType(type);
 
+                model.print();
+
                 modelList.add(model);
             }
-            disconnect();
-
+            System.out.println("Получние тренировок завершено");
             return modelList;
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println("Получние тренировок завершено неудачно");
+            System.out.println("Повторная попытка");
+            connect();
+            List<TrainModel> models = getAllTrainsForToken(token);
+            disconnect();
+            return models;
         }
-        return new ArrayList();
     }
 
 }
