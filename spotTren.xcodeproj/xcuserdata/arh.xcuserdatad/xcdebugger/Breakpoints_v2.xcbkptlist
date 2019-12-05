@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Bucket
+   uuid = "2A6D7885-9D2A-437C-B1E9-A1BCC2BEC209"
    type = "1"
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "7ADCE8EA-3BF8-4D7E-B840-F711DDF4039A"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -22,6 +24,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "5660FEDC-9D19-43FD-8CAF-34CB9637164F"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -35,34 +38,34 @@
             landmarkType = "7">
             <Locations>
                <Location
+                  uuid = "5660FEDC-9D19-43FD-8CAF-34CB9637164F - 851f298c78d1b605"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "spotTren.RegistrationVC.registrationClick(__C.UIButton) -&gt; ()"
                   moduleName = "spotTren"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/arh/Desktop/web%20lab/client/spotTren/spotTren/RegistrationScreen/view/RegistrationVC.swift"
-                  timestampString = "590742068.335075"
+                  urlString = "file:///Users/arh/Desktop/web%20lab/newClient/trenPlus/spotTren/RegistrationScreen/view/RegistrationVC.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "33"
                   endingLineNumber = "33"
-                  offsetFromSymbolStart = "1779">
+                  offsetFromSymbolStart = "1797">
                </Location>
                <Location
+                  uuid = "5660FEDC-9D19-43FD-8CAF-34CB9637164F - d0f9c4056c6aadb6"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 (spotTren.UserModel) -&gt; () in spotTren.RegistrationVC.registrationClick(__C.UIButton) -&gt; ()"
                   moduleName = "spotTren"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/arh/Desktop/web%20lab/client/spotTren/spotTren/RegistrationScreen/view/RegistrationVC.swift"
-                  timestampString = "590742068.3378789"
+                  urlString = "file:///Users/arh/Desktop/web%20lab/newClient/trenPlus/spotTren/RegistrationScreen/view/RegistrationVC.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "34"
                   endingLineNumber = "34"
-                  offsetFromSymbolStart = "276">
+                  offsetFromSymbolStart = "273">
                </Location>
             </Locations>
          </BreakpointContent>

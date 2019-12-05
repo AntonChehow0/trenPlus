@@ -11,6 +11,10 @@ import Foundation
 /// Производит загрузку из сети всех тренировок текущего пользователя
 class AllTrenController {
     
+    let countOfReload = 3
+    
+    var currentReload = 0
+    
     private struct JsonForLoadData: Codable {
         let token: String
     }
@@ -34,6 +38,10 @@ class AllTrenController {
                 complition(models)
             } catch {
                 print(error)
+                if (self.currentReload == 3) {
+                    self.currentReload += 1
+                    self.load(complition: complition)
+                }
             }
         }.resume()
         
