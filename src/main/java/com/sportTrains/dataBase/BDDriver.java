@@ -244,7 +244,7 @@ public class BDDriver {
             System.out.println(sql);
             resultSet = statment.executeQuery(sql);
             String log = String.format("Количество данных в ответе на запрос ----> %s", resultSet.getFetchSize());
-            System.out.println(log);]
+            System.out.println(log);
             if (resultSet.next()) {
                 int result = resultSet.getInt("sum");
                 System.out.println("Статистика ---> " + result);
